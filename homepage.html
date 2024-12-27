@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza Shop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="content">
+            <nav>
+                <p class="brand"><strong>Pizzaria DevTeam</strong></p>
+                <ul>
+                    <li><a href="#menu">Menu</a></li>
+                </ul>
+            </nav>
+            <div class="header-block">
+                <div class="text">
+                    <h2>A melhor pizzaria da cidade!</h2>
+                    <p>"🍕 Pizza feita com amor, sabor que conquista! Venha experimentar a diferença na DevTeam!"</p>
+                </div>
+                <img src="imagens/pizzaheader.webp" alt="Pizza">
+            </div>
+        </div>
+    </header>
+
+    <section class="menu" id="menu">
+        <div class="content">
+            <div class="title-wrapper-menu"> 
+                <h3>Nosso menu</h3>
+            </div>
+            <div class="card-wrapper">
+                <div class="card-item">
+                    <img src="imagens/calabreso.webp" alt="Margherita">
+                    <div class="card-content">
+                        <h3>Calabresa</h3>
+                        <p> Fatias de calabresa defumada, cebola, azeitonas e orégano sobre queijo derretido.</p>
+                        <button class="add-to-cart" data-price="20.00">Add ao carrinho -R$$20.00</button>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <img src="imagens/frangoctp.png" alt="Pepperoni">
+                    <div class="card-content">
+                        <h3>Frango de Catupiry</h3>
+                        <p>Frango desfiado e catupiry cremoso cobertos com queijo dourado.                        </p>
+                        <button class="add-to-cart" data-price="25.00">Add ao carrinho - R$25.00</button>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <img src="imagens/4queijos.png" alt="Veggie">
+                    <div class="card-content">
+                        <h3>4 queijos</h3>
+                        <p>Mussarela, provolone, parmesão e gorgonzola sobre molho de tomate.</p>
+                        <button class="add-to-cart" data-price="20.00">Add ao carrinho - R$20.00</button>
+                    </div>
+                </div>
+
+                <div class="card-item">
+                    <img src="imagens/portuguesa.png" alt="BBQ Chicken">
+                    <div class="card-content">
+                        <h3>Portuguesa</h3>
+                        <p> Presunto, ovos, cebola, pimentão, azeitonas e queijo.</p>
+                        <button class="add-to-cart" data-price="25.00">Add ao carrinho - R$25.00</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cart-summary">
+                <h3>Carrinho:</h3>
+                <ul id="cart-items">
+                    <!-- Os itens serão adicionado aq -->
+                </ul>
+                <p>Total: R$<span id="cart-total">0.00</span></p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="content">
+            <p>&copy; @DataLake</p>
+        </div>
+    </footer>
+
+    <script>
+        const cartItems = document.getElementById('cart-items');
+        const cartTotal = document.getElementById('cart-total');
+        let total = 0;
+
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const price = parseFloat(button.getAttribute('data-price'));
+                const itemName = button.parentElement.querySelector('h3').textContent;
+
+                const listItem = document.createElement('li');
+                listItem.textContent = `${itemName} - $${price.toFixed(2)}`;
+                cartItems.appendChild(listItem);
+
+                total += price;
+                cartTotal.textContent = total.toFixed(2);
+            });
+        });
+    </script>
+</body>
+</html>
